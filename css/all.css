@@ -1,0 +1,90 @@
+*[hidefocus],input,textarea,a{outline:none;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{padding:0;margin:0;}
+fieldset,img,html,body,iframe{border:0;}
+table{border-collapse:collapse;border-spacing:0;}
+li{list-style:none;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+caption,th{font-weight:normal;font-style:normal;text-align:left;}
+em,strong{font-weight:bold;font-style:normal;}
+body,textarea,select,input,pre{font-family:arial,microsoft yahei,helvetica,sans-serif;font-size:14px;color:#555;}
+body{background:#f8f8f8;line-height:1.5em;-webkit-text-size-adjust:none;}
+a,button{cursor:pointer;}
+textarea{resize:none;overflow:auto;}
+pre{white-space:pre-wrap;}
+a{color:#333;text-decoration:none;}
+input{
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-user-modify: read-write-plaintext-only;
+}
+
+html, body{width:100%;height:100%;overflow:hidden;}
+.main-page, .side-page, .single-page{width:100%;height:100%;position:relative;}
+
+/* main-page */
+.main-page .single-page{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.main-page .single-page.cycle-forward {
+  opacity: 0;
+  /*-webkit-transform: translate(60px, -75px) rotate(10deg);*/
+  -webkit-transform: translate(100px, 0px);
+}
+
+.main-page .single-page:first-child{
+    background: yellow;
+}
+.main-page .single-page:nth-child(2){
+    background: blue;
+}
+.main-page .single-page:nth-child(3){
+    background: red;
+}
+
+/* side page */
+.side-page{
+    display: -webkit-box;
+}
+
+/* single page */
+.single-page{text-align: center;}
+.single-page .tag{
+    position: absolute;
+    font-size: 150px;
+    border: 10px solid #BDBDBD;
+    color: #666;
+    top: 50%;
+    left: 50%;
+    margin-top: -75px;
+    margin-left: -75px;
+    line-height: 1em;
+    border-radius: 10000px;
+    width: 150px;
+    height: 150px;
+}
+
+
+.cycle-button {
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  display: block;
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  font-size: 1.25em;
+  padding: 0.5em;
+  text-transform: lowercase;
+  cursor: pointer;
+  height: 100px;
+  width: 100px;
+  margin-top: -50px;
+}
+.cycle-next {
+  right: 0;
+}
+.cycle-prev {
+  left: 0;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>INVES</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="inves" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- develop -->
+    <link type="text/css" rel="stylesheet" href="./css/all.css" />
+    <!-- /develop -->
+</head>
+
+<body>
+    <div class="main-page">
+        <div class="single-page">
+            <div class="tag">1</div>
+        </div>
+        <div class="single-page">
+            <div class="tag">2</div>
+        </div>
+        <div class="single-page">
+            <div class="tag">3</div>
+        </div>
+    </div>
+    <div class="side-page">
+        <div class="single-page">
+            <div class="tag">3</div>
+        </div>
+        <div class="single-page">
+            <div class="tag">4</div>
+        </div>
+    </div>
+    
+    <script src="./js/all.js"></script>
+    <script src="./js/slide.js"></script>
+    <script src="./js/slide-y.js"></script>
+    <script>
+    // init slide page
+    var slider = new $.Slider({
+        container : document.body,
+        wrap : $(document.body),
+        panel : $('.side-page'),
+        onStart : function() {
+            console.log('start', arguments);
+        },
+        onChange : function() {
+            console.log('change', arguments);
+        },
+    });
+    // init slide page
+    var slider = new $.SliderY({
+        container : document.body,
+        wrap : $(document.body),
+        panel : $('.main-page'),
+        onStart : function() {
+            console.log('start', arguments);
+        },
+        onChange : function() {
+            console.log('change', arguments);
+        },
+    });
+    </script>
+
+</body>
+
+</html>
