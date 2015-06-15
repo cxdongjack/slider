@@ -13,6 +13,7 @@
     curIndex: 0,
     maxPage : 0,
     duration: 300,
+    onChangeStart: function() {},
     onChange: function() {},
     onStart: function() {}
   };
@@ -96,7 +97,7 @@
       if(this._movestart) {
         event.preventDefault();
         if(Math.abs(distX) <= this.steps) {
-          this.setCoord(distX);
+          // this.setCoord(distX);
           this._disX = distX;
         }
       } 
@@ -128,7 +129,7 @@
     // 动画结束开始更新index
     this.curIndex = this.nextIndex;
     // trigger
-    this.delta && this.onChange(this.delta);
+    this.delta && this.onChange(this.delta, this.curIndex, this.panels);
     this.delta = 0;
   };
 
@@ -155,6 +156,7 @@
       = style.transitionDuration 
       = this.duration + "ms";
 
+    this.onChangeStart(this.delta, this.curIndex, this.panels);
     this.setIndex(index);
   };
 

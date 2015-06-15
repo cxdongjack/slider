@@ -5,7 +5,7 @@
     <title>INVES</title>
     <meta charset="utf-8" />
     <meta name="author" content="inves" />
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
     <!-- develop -->
     <link type="text/css" rel="stylesheet" href="./css/all.css" />
     <!-- /develop -->
@@ -53,13 +53,19 @@
         container : document.body,
         wrap : $(document.body),
         panel : $('.main-page'),
-        onStart : function() {
-            console.log('start', arguments);
+        onChangeStart : function(delta, curIndex, panels) {
+            if (delta < 0) {
+                return;
+            }
+            panels.eq(curIndex + delta).addClass('a-bouncein');
         },
-        onChange : function() {
+        onChange : function(delta, curIndex, panels) {
             console.log('change', arguments);
+            panels.eq(curIndex).removeClass('a-bouncein');
         },
     });
+
+    $('.main-page').css("transform", "translate3d(" + (-$('.main-page').width()) +  "px, 0px, 0px)");
     </script>
 
 </body>
