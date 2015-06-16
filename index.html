@@ -7,28 +7,41 @@
     <meta name="author" content="inves" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
     <!-- develop -->
+    <link type="text/css" rel="stylesheet" href="./css/animation.css" />
     <link type="text/css" rel="stylesheet" href="./css/all.css" />
     <!-- /develop -->
 </head>
 
 <body>
     <div class="main-page">
-        <div class="single-page">
-            <div class="tag">1</div>
-        </div>
-        <div class="single-page">
-            <div class="tag">2</div>
-        </div>
-        <div class="single-page">
-            <div class="tag">3</div>
+        <div class="panel">
+            <div class="single-page">
+                <div class="tag">1</div>
+            </div>
+            <div class="single-page">
+                <div class="tag">2</div>
+            </div>
+            <div class="single-page">
+                <div class="tag">3</div>
+            </div>
         </div>
     </div>
     <div class="side-page">
-        <div class="single-page">
-            <div class="tag">3</div>
+        <div class="panel">
+            <div class="single-page">
+                <div class="tag">3</div>
+            </div>
+            <div class="single-page">
+                <div class="tag">4</div>
+            </div>
         </div>
-        <div class="single-page">
-            <div class="tag">4</div>
+        <div class="banner">
+            <div class="single-page">
+                <div class="tag">3</div>
+            </div>
+            <div class="single-page">
+                <div class="tag">4</div>
+            </div>
         </div>
     </div>
     
@@ -38,21 +51,36 @@
     <script>
     // init slide page
     var slider = new $.Slider({
-        container : document.body,
-        wrap : $(document.body),
-        panel : $('.side-page'),
-        onStart : function() {
-            console.log('start', arguments);
-        },
-        onChange : function() {
-            console.log('change', arguments);
-        },
+        wrap : $('.side-page'),
+        panel : $('.side-page .panel'),
+        duration : 300,
+        onChangeStart : function(delta, curIndex, panels) {
+            var panels = $('.side-page .banner').children();
+            var crt = panels.eq(curIndex).find('.tag');
+            var target = panels.eq(curIndex + delta).find('.tag');
+            var duration = 300;
+            if (delta > 0) {
+                crt.animate('fadeoutL', 300, function() {
+                    crt.css('opacity', '0');
+                });
+                target.animate('fadeinR', 300, function() {
+                    target.css('opacity', '1');
+                });
+            } else {
+                crt.animate('fadeoutR', 300, function() {
+                    crt.css('opacity', '0');
+                });
+                target.animate('fadeinL', 300, function() {
+                    target.css('opacity', '1');
+                });
+
+            }
+        }
     });
     // init slide page
     var slider = new $.SliderY({
-        container : document.body,
-        wrap : $(document.body),
-        panel : $('.main-page'),
+        wrap : $('.main-page'),
+        panel : $('.main-page .panel'),
         onChangeStart : function(delta, curIndex, panels) {
             if (delta < 0) {
                 return;
@@ -65,7 +93,26 @@
         },
     });
 
-    $('.main-page').css("transform", "translate3d(" + (-$('.main-page').width()) +  "px, 0px, 0px)");
+    function hideMain() {
+        var opt = {"transform" : "translate3d(" + (-$('.main-page').width()) +  "px, 0px, 0px)"};
+        $('.main-page').animate(opt, 300, function() {});
+    }
+
+    function showMain() {
+        $('.main-page').animate({"transform" : "translate3d(0px, 0px, 0px)"}, 300);
+    }
+
+    // setTimeout(showMain, 100);
+    var state = 1;
+    $(document.body).click(function() {
+        if (state) {
+            hideMain();
+        } else {
+            showMain();
+        }
+        return state = !state;
+    });
+
     </script>
 
 </body>

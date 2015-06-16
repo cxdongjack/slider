@@ -15,6 +15,7 @@
     maxPage : 0,
     duration: 200,
     onChange: function() {},
+    onChangeStart: function() {},
     onStart: function() {}
   };
 
@@ -83,7 +84,7 @@
       if(this._movestart) {
         event.preventDefault();
         if(Math.abs(distX) <= this.steps) {
-          this.setCoord(- this.curIndex * this.steps + distX);
+          // this.setCoord(- this.curIndex * this.steps + distX);
           this._disX = distX;
         }
       } 
@@ -95,6 +96,7 @@
       this.delta = this._disX < 0 ? 1 : -1;
       // this.slideTo(this.delta + this.curIndex);
       this.deltaSlide(this.delta);
+	  event.preventDefault();
     }
   };
 
@@ -108,7 +110,7 @@
       = "0ms";
 
     // trigger
-    this.delta && this.onChange(this.delta);
+    this.delta && this.onChange(this.delta, this.curIndex, this.panels);
     this.delta = 0;
   };
 
@@ -132,6 +134,8 @@
       = style.OTransitionDuration 
       = style.transitionDuration 
       = this.duration + "ms";
+
+    this.onChangeStart(this.delta, this.curIndex, this.panels);
 
     this.setIndex(index);
   };
