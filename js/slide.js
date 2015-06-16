@@ -119,7 +119,7 @@
   };
 
   _pro.setCoord = function(distX) {
-    this.panel.css("transform", "translate3d(" + distX +  "px,0px,0px)");
+    this.panel.css("-webkit-transform", "translate3d(" + distX +  "px,0px,0px)");
   };
 
   _pro.deltaSlide = function(delta) {

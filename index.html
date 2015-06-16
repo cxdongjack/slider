@@ -86,6 +86,8 @@
                 return;
             }
             panels.eq(curIndex + delta).addClass('a-bouncein');
+            // panels.eq(curIndex + delta).animate('bouncein', 300);
+            
         },
         onChange : function(delta, curIndex, panels) {
             console.log('change', arguments);
@@ -94,12 +96,12 @@
     });
 
     function hideMain() {
-        var opt = {"transform" : "translate3d(" + (-$('.main-page').width()) +  "px, 0px, 0px)"};
+        var opt = {"-webkit-transform" : "translate3d(" + (-$('.main-page').width()) +  "px, 0px, 0px)"};
         $('.main-page').animate(opt, 300, function() {});
     }
 
     function showMain() {
-        $('.main-page').animate({"transform" : "translate3d(0px, 0px, 0px)"}, 300);
+        $('.main-page').animate({"-webkit-transform" : "translate3d(0px, 0px, 0px)"}, 300);
     }
 
     // setTimeout(showMain, 100);

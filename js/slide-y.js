@@ -140,9 +140,9 @@
   _pro.setCoord = function(distX) {
     // scroll down
     if (distX > 0) {
-      this.panels.eq(this.curIndex - 1).css("transform", "translate3d(0px," + (-this.steps + distX) +  "px,0px)");
+      this.panels.eq(this.curIndex - 1).css("-webkit-transform", "translate3d(0px," + (-this.steps + distX) +  "px,0px)");
     } else {
-      this.panels.eq(this.curIndex).css("transform", "translate3d(0px," + distX +  "px,0px)");
+      this.panels.eq(this.curIndex).css("-webkit-transform", "translate3d(0px," + distX +  "px,0px)");
     }
   };
 
