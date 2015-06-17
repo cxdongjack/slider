@@ -116,6 +116,13 @@
     }
   };
 
+  _pro.go = function(delta) {
+      this._movestart = undefined;
+      this.delta = delta;
+      // 中间所有页面一步到位
+      this.slideTo(this.delta + this.curIndex);
+  };
+
   _pro.__transitionEnd = function() {
     // clear
     var style = this.panels[this.delta > 0 ? this.curIndex : this.nextIndex].style;
