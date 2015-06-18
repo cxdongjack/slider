@@ -21,18 +21,18 @@
             <div class="single-page">
                 <div class="sprites button_join_us" data-tap="button_join_us_pressed"></div>
             </div>
-            <div class="single-page">
+            <div class="single-page" style="display:none;">
                 <div class="sprites button_join_us" data-tap="button_join_us_pressed"></div>
             </div>
-            <div class="single-page">
+            <div class="single-page" style="display:none;">
                 <div class="sprites button_join_us" data-tap="button_join_us_pressed"></div>
             </div>
-            <div class="single-page">
+            <div class="single-page" style="display:none;">
                 <a href="#1" class="position-button"><div class="sprites employment_05_button_01" data-tap="employment_05_button_01_pressed"></div></a>
                 <a href="#2" class="position-button"><div class="sprites employment_05_button_02" data-tap="employment_05_button_02_pressed"></div></a>
                 <a href="#3" class="position-button"><div class="sprites employment_05_button_03" data-tap="employment_05_button_03_pressed"></div></a>
             </div>
-            <div class="single-page">
+            <div class="single-page" style="display:none;">
                 <div class="employ-button sprites employment_09_button" data-tap="employment_09_button_pressed"></div>
             </div>
         </div>
@@ -120,6 +120,7 @@
             // setTimeout(function() {
             //     panels.eq(curIndex + delta).find('.tag').show();
             // }, 500);
+            panels.eq(curIndex + delta + 1).show();
             
         },
         onChange : function(delta, curIndex, panels) {
@@ -129,8 +130,11 @@
     });
 
     function hideMain() {
+        $('.side-page').show();
+
         var opt = {"-webkit-transform" : "translate3d(" + (-$('.main-page').width()) +  "px, 0px, 0px)"};
         $('.main-page').animate(opt, 300, function() {});
+
     }
 
     function showMain() {
