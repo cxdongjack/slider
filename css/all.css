@@ -27,12 +27,12 @@ html, body{width:100%;height:100%;overflow:hidden;}
 .main-page .single-page{width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
 .main-page .panel{width:100%;height:100%;display: -webkit-box;}
 .main-page .single-page{background: url(../images/main_1.png) center no-repeat; background-size: cover;}
-.main-page .single-page:first-child{background-image: url(../images/main_1.png);}
-.main-page .single-page:nth-child(2){background-image: url(../images/main_2.png);}
-.main-page .single-page:nth-child(3){background-image: url(../images/main_3.png);}
-.main-page .single-page:nth-child(4){background-image: url(../images/main_4.png);}
-.main-page .single-page:nth-child(5){background-image: url(../images/main_5.png);}
-.main-page .single-page:nth-child(6){background-image: url(../images/main_6.png);}
+.main-page .single-page:first-child{background-image: url(../images/main_1.png);z-index: 6;}
+.main-page .single-page:nth-child(2){background-image: url(../images/main_2.png);z-index: 5;background-size: 100% 100%;}
+.main-page .single-page:nth-child(3){background-image: url(../images/main_3.png);background-size: 100% 100%;z-index: 4;}
+.main-page .single-page:nth-child(4){background-image: url(../images/main_4.png);z-index: 3;background-size: 100% 100%;}
+.main-page .single-page:nth-child(5){background-image: url(../images/main_5.png);z-index: 2;}
+.main-page .single-page:nth-child(6){background-image: url(../images/main_6.png);z-index: 1;}
 
 /* side page */
 .side-page{background-color: #fff;}
@@ -42,7 +42,8 @@ html, body{width:100%;height:100%;overflow:hidden;}
 .side-page .single-page:nth-child(2){background-image: url(../images/side_2.png);}
 .side-page .single-page:nth-child(3){background-image: url(../images/side_3.png);}
 
-.side-page .banner .font{position: fixed;top: 10px;left: 10px;right: 10px;}
+.side-page .banner .font{position: fixed;top: 10px;left: 10px;right: 10px;opacity:0;}
+.side-page .banner .font:first-child{opacity:1;}
 .side-page .banner .font img{width: 100%;}
 
 /* single page */
@@ -95,3 +96,62 @@ html, body{width:100%;height:100%;overflow:hidden;}
 }
 
 
+/* 淡出-向右 */
+@-webkit-keyframes fadeoutR{
+    0%{opacity:1;-webkit-transform:translateX(0);}
+    100%{opacity:0;-webkit-transform:translateX(100px);}
+}
+/* 淡入-从左 */
+@-webkit-keyframes fadeinL{
+    0%{opacity:0;-webkit-transform:translateX(-100px);}
+    100%{opacity:1;-webkit-transform:translateX(0);}
+}
+/* 淡出-向右 */
+@-webkit-keyframes fadeoutR{
+    0%{opacity:1;-webkit-transform:translateX(0);}
+    100%{opacity:0;-webkit-transform:translateX(100px);}
+}
+/* 淡出-向左 */
+@-webkit-keyframes fadeoutL{
+    0%{opacity:1;-webkit-transform:translateX(0);}
+    100%{opacity:0;-webkit-transform:translateX(-100px);}
+}
+
+.sprites { background: url(../images/sprites.png) no-repeat; -webkit-transform: scale(.333);}
+.button_join_us { width: 300px; height: 100px; background-position: -1362px -181px;}
+.button_join_us_pressed { width: 300px; height: 100px; background-position: 0 -362px; }
+.employment_05_button_01 { width: 680px; height: 180px; background-position: 0 0; }
+.employment_05_button_01_pressed { width: 680px; height: 180px; background-position: -1542px 0; }
+.employment_05_button_02 { width: 680px; height: 180px; background-position: -681px -83px; }
+.employment_05_button_02_pressed { width: 680px; height: 180px; background-position: 0 -181px; }
+.employment_05_button_03 { width: 680px; height: 180px; background-position: -952px -282px; }
+.employment_05_button_03_pressed { width: 680px; height: 180px; background-position: -1633px -282px; }
+.employment_09_button { width: 650px; height: 100px; background-position: -1663px -181px; }
+.employment_09_button_pressed { width: 650px; height: 100px; background-position: -301px -362px; }
+.last { width: 36px; height: 20px; background-position: -681px -264px; }
+.last_pressed { width: 36px; height: 20px; background-position: -718px -264px; }
+.next { width: 36px; height: 20px; background-position: -681px -285px; }
+.next_pressed { width: 36px; height: 20px; background-position: -681px -306px; }
+.send_mail { width: 860px; height: 82px; background-position: -681px 0; }
+
+.button_join_us{  position: fixed;   bottom: 5%; left: 50%; margin-left: -150px;}
+
+
+.single-page .position-button{
+    top: 30%;
+    position: fixed;
+    left: 50%;
+    margin-left: -340px;
+}
+.single-page .position-button:first-child{
+    position: fixed;
+    top: 14%;
+}
+.single-page .position-button:nth-child(2){
+    top: 32%;
+}
+.single-page .position-button:nth-child(3){
+    top: 50%;
+}
+.employ-button{ position: fixed;
+    top: 48%; left: 50%; margin-left: -325px;}

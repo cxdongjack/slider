@@ -16,22 +16,24 @@
     <div class="main-page">
         <div class="panel">
             <div class="single-page">
-                <div class="tag">1</div>
+                <div class="sprites button_join_us" data-tap="button_join_us_pressed"></div>
             </div>
             <div class="single-page">
-                <div class="tag a-bouncein">2</div>
+                <div class="sprites button_join_us" data-tap="button_join_us_pressed"></div>
             </div>
             <div class="single-page">
-                <div class="tag">3</div>
+                <div class="sprites button_join_us" data-tap="button_join_us_pressed"></div>
             </div>
             <div class="single-page">
-                <div class="tag">4</div>
+                <div class="sprites button_join_us" data-tap="button_join_us_pressed"></div>
             </div>
             <div class="single-page">
-                <div class="tag">5</div>
+                <a href="#1" class="position-button"><div class="sprites employment_05_button_01" data-tap="employment_05_button_01_pressed"></div></a>
+                <a href="#2" class="position-button"><div class="sprites employment_05_button_02" data-tap="employment_05_button_02_pressed"></div></a>
+                <a href="#3" class="position-button"><div class="sprites employment_05_button_03" data-tap="employment_05_button_03_pressed"></div></a>
             </div>
             <div class="single-page">
-                <div class="tag">6</div>
+                <div class="employ-button sprites employment_09_button" data-tap="employment_09_button_pressed"></div>
             </div>
         </div>
     </div>
@@ -64,6 +66,18 @@
     <script src="./js/slide.js"></script>
     <script src="./js/slide-y.js"></script>
     <script>
+    (function initTap() {
+        $(document.body).on('touchstart', '[data-tap]', function(event) {
+            var $el = $(event.currentTarget);
+            var clazz = $el.data('tap');
+            $el.addClass(clazz);
+        });
+        $(document.body).on('touchend touchucancel', '[data-tap]', function(event) {
+            var $el = $(event.currentTarget);
+            var clazz = $el.data('tap');
+            $el.removeClass(clazz);
+        });
+    })();
     // init slide page
     var slider = new $.Slider({
         wrap : $('.side-page'),
@@ -73,19 +87,19 @@
             var panels = $('.side-page .banner').children();
             var crt = panels.eq(curIndex);
             var target = panels.eq(curIndex + delta);
-            var duration = 300;
+            var duration = 250;
             if (delta > 0) {
-                crt.animate('fadeoutL', 300, function() {
+                crt.animate('fadeoutL', duration, function() {
                     crt.css('opacity', '0');
                 });
-                target.animate('fadeinR', 300, function() {
+                target.animate('fadeinR', duration, function() {
                     target.css('opacity', '1');
                 });
             } else {
-                crt.animate('fadeoutR', 300, function() {
+                crt.animate('fadeoutR', duration, function() {
                     crt.css('opacity', '0');
                 });
-                target.animate('fadeinL', 300, function() {
+                target.animate('fadeinL', duration, function() {
                     target.css('opacity', '1');
                 });
 
@@ -123,16 +137,40 @@
         $('.main-page').animate({"-webkit-transform" : "translate3d(0px, 0px, 0px)"}, 300);
     }
 
-    var state = 1;
-    $(document.body).click(function() {
-        if (state) {
-            // sliderY.go(1);
+    if( 'onhashchange' in window ) {
+      window.addEventListener('hashchange', getHashValue, false);
+      // Our custom event handler
+      function getHashValue() {
+        var key = window.location.hash.substr(1);
+        if (key) {
             hideMain();
         } else {
-            showMain();
+            showMain(key);
         }
-        return state = !state;
-    });
+      }
+    } else {
+        var state = 1;
+        $(document.body).click(function() {
+            if (state) {
+                // sliderY.go(1);
+                hideMain();
+            } else {
+                showMain();
+            }
+            return state = !state;
+        });
+    }
+
+
+    // var max = 0;
+    //     var timer = setInterval(function() {
+    //         if (sliderY.curIndex > 4) {
+    //             clearInterval(timer);
+    //             return;
+    //         }
+    //         max++;
+    //         sliderY.go(1);
+    //     }, 320);
 
     </script>
 
