@@ -116,12 +116,37 @@
     }
   };
 
-  _pro.go = function(delta) {
+  _pro.go = function(next) {
       this._movestart = undefined;
-      this.delta = delta;
+      this.delta = next - this.curIndex;
       // 中间所有页面一步到位
+      var that = this;
+      for(var i = this.curIndex + 1; i <= next - 1; i++) {
+        this.panels.eq(i).css("-webkit-transform", "translate3d(0px," + -this.steps +  "px,0px)");
+        setTimeout((function(i) {
+          return function() {
+            that.panels.eq(i).show();
+          };
+        })(i), 200);
+      }
+       this.panels.eq(i).show();
       this.slideTo(this.delta + this.curIndex);
   };
+
+  _pro.next = function() {
+      this._movestart = undefined;
+      this.delta = 1;
+      // 中间所有页面一步到位
+      this.slideTo(this.delta + this.curIndex);
+  }
+
+  _pro.prev = function() {
+      this._movestart = undefined;
+      this.delta = -1;
+      // 中间所有页面一步到位
+      this.slideTo(this.delta + this.curIndex);
+  }
+
 
   _pro.__transitionEnd = function() {
     // clear

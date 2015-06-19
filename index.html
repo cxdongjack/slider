@@ -7,7 +7,7 @@
     <meta name="author" content="inves" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
     <!-- develop -->
-    <link type="text/css" rel="stylesheet" href="./css/animation.css" />
+    <!-- <link type="text/css" rel="stylesheet" href="./css/animation.css" /> -->
     <link type="text/css" rel="stylesheet" href="./css/all.css" />
     <!-- /develop -->
 </head>
@@ -16,37 +16,74 @@
     <div class="main-page">
         <div class="panel">
             <div class="single-page">
-                <div class="sprites button_join_us" data-tap="button_join_us_pressed"></div>
+                <div class="next-animation">
+                    <div class="sprites next_pressed"></div>
+                </div>
+                <div class="next-button">
+                    <div class="sprites next" data-tap="next-pressed"></div>
+                </div>
             </div>
             <div class="single-page">
                 <div class="sprites button_join_us" data-tap="button_join_us_pressed"></div>
+                <div class="next-animation">
+                    <div class="sprites next_pressed"></div>
+                </div>
+                <div class="next-button">
+                    <div class="sprites next" data-tap="next-pressed"></div>
+                </div>
             </div>
             <div class="single-page" style="display:none;">
                 <div class="sprites button_join_us" data-tap="button_join_us_pressed"></div>
+                <div class="next-animation">
+                    <div class="sprites next_pressed"></div>
+                </div>
+                <div class="next-button">
+                    <div class="sprites next" data-tap="next-pressed"></div>
+                </div>
             </div>
             <div class="single-page" style="display:none;">
                 <div class="sprites button_join_us" data-tap="button_join_us_pressed"></div>
+                <div class="next-animation">
+                    <div class="sprites next_pressed"></div>
+                </div>
+                <div class="next-button">
+                    <div class="sprites next" data-tap="next-pressed"></div>
+                </div>
             </div>
             <div class="single-page" style="display:none;">
-                <a href="#1" class="position-button"><div class="sprites employment_05_button_01" data-tap="employment_05_button_01_pressed"></div></a>
-                <a href="#2" class="position-button"><div class="sprites employment_05_button_02" data-tap="employment_05_button_02_pressed"></div></a>
+            <div class="buttons">
                 <a href="#3" class="position-button"><div class="sprites employment_05_button_03" data-tap="employment_05_button_03_pressed"></div></a>
+                <a href="#2" class="position-button"><div class="sprites employment_05_button_02" data-tap="employment_05_button_02_pressed"></div></a>
+                <a href="#1" class="position-button"><div class="sprites employment_05_button_01" data-tap="employment_05_button_01_pressed"></div></a>
+            </div>
+                <div class="next-animation">
+                    <div class="sprites next_pressed"></div>
+                </div>
+                <div class="next-button">
+                    <div class="sprites next" data-tap="next-pressed"></div>
+                </div>
             </div>
             <div class="single-page" style="display:none;">
-                <div class="employ-button sprites employment_09_button" data-tap="employment_09_button_pressed"></div>
+                <a href="http://www.invesdesign.com" target="_blank"><div class="employ-button sprites employment_09_button" data-tap="employment_09_button_pressed"></div></a>
+                <div class="last-animation">
+                    <div class="sprites last_pressed"></div>
+                </div>
+                <div class="last-button">
+                    <div class="sprites last" data-tap="last-pressed"></div>
+                </div>
             </div>
         </div>
     </div>
     <div class="side-page">
         <div class="panel">
             <div class="single-page">
-                <div class="tag">1</div>
+                <div class="sprites send_mail"></div>
             </div>
             <div class="single-page">
-                <div class="tag">2</div>
+                <div class="sprites send_mail"></div>
             </div>
             <div class="single-page">
-                <div class="tag">3</div>
+                <div class="sprites send_mail"></div>
             </div>
         </div>
         <div class="banner">
@@ -64,7 +101,7 @@
     
     <script src="./js/all.js"></script>
     <script src="./js/slide.js"></script>
-    <script src="./js/slide-y.js"></script>
+    <script src="./js/slide-y.js?3"></script>
     <script>
     (function initTap() {
         $(document.body).on('touchstart', '[data-tap]', function(event) {
@@ -121,6 +158,10 @@
             //     panels.eq(curIndex + delta).find('.tag').show();
             // }, 500);
             panels.eq(curIndex + delta + 1).show();
+
+            // if (delta > 0 && curIndex + delta == 4) {
+            //     panels.eq(4).find('.buttons').addClass('a-bouncedelay');
+            // }
             
         },
         onChange : function(delta, curIndex, panels) {
@@ -129,8 +170,12 @@
         },
     });
 
-    function hideMain() {
+    function hideMain(index) {
+        var key = index ? index - 1 : 0;
         $('.side-page').show();
+        slider.setIndex(key);
+        $('.side-page .banner .font').css('opacity', 0);
+        $('.side-page .banner .font').eq(key).css('opacity', 1);
 
         var opt = {"-webkit-transform" : "translate3d(" + (-$('.main-page').width()) +  "px, 0px, 0px)"};
         $('.main-page').animate(opt, 300, function() {});
@@ -147,7 +192,7 @@
       function getHashValue() {
         var key = window.location.hash.substr(1);
         if (key) {
-            hideMain();
+            hideMain(key);
         } else {
             showMain(key);
         }
@@ -164,6 +209,15 @@
             return state = !state;
         });
     }
+    $(document.body).on('click', '.button_join_us', function() {
+        sliderY.go(4);
+    });
+    $(document.body).on('click', '.next-button', function() {
+        sliderY.next();
+    });
+    $(document.body).on('click', '.last-button', function() {
+        sliderY.prev();
+    });
 
 
     // var max = 0;

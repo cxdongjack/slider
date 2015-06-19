@@ -12,6 +12,9 @@ a,button{cursor:pointer;}
 textarea{resize:none;overflow:auto;}
 pre{white-space:pre-wrap;}
 a{color:#333;text-decoration:none;}
+a{
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
 input{
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     -webkit-user-modify: read-write-plaintext-only;
@@ -43,7 +46,6 @@ html, body{width:100%;height:100%;overflow:hidden;}
 .side-page .single-page:nth-child(3){background-image: url(../images/side_3.png);}
 
 .side-page .banner .font{position: fixed;top: 10px;left: 10px;right: 10px;opacity:0;}
-.side-page .banner .font:first-child{opacity:1;}
 .side-page .banner .font img{width: 100%;}
 
 /* single page */
@@ -95,11 +97,10 @@ html, body{width:100%;height:100%;overflow:hidden;}
     100%{-webkit-transform:scale(1);}
 }
 
-
-/* 淡出-向右 */
-@-webkit-keyframes fadeoutR{
-    0%{opacity:1;-webkit-transform:translateX(0);}
-    100%{opacity:0;-webkit-transform:translateX(100px);}
+/* 淡入-从右 */
+@-webkit-keyframes fadeinR{
+    0%{opacity:0;-webkit-transform:translateX(100px);}
+    100%{opacity:1;-webkit-transform:translateX(0);}
 }
 /* 淡入-从左 */
 @-webkit-keyframes fadeinL{
@@ -134,24 +135,56 @@ html, body{width:100%;height:100%;overflow:hidden;}
 .next_pressed { width: 36px; height: 20px; background-position: -681px -306px; }
 .send_mail { width: 860px; height: 82px; background-position: -681px 0; }
 
-.button_join_us{  position: fixed;   bottom: 5%; left: 50%; margin-left: -150px;}
+.button_join_us{  position: absolute;   bottom: 5%; left: 50%; margin-left: -150px;}
 
 
 .single-page .position-button{
     top: 30%;
-    position: fixed;
+    position: absolute;
     left: 50%;
     margin-left: -340px;
+    height: 120px;
 }
 .single-page .position-button:first-child{
-    position: fixed;
-    top: 14%;
+    position: absolute;
+    top: 50%;
 }
 .single-page .position-button:nth-child(2){
     top: 32%;
 }
 .single-page .position-button:nth-child(3){
-    top: 50%;
+    top: 14%;
 }
-.employ-button{ position: fixed;
-    top: 48%; left: 50%; margin-left: -325px;}
+.employ-button{ position: absolute;
+    top: 48%; left: 50%; margin-left: -325px;
+}
+
+.send_mail{ position: absolute;
+    bottom: 1%; left: 50%; margin-left: -430px;}
+
+.last, .last_pressed{ position: absolute;
+    bottom: 0%; left: 50%; margin-left: -18px;}
+
+.next, .next_pressed{ position: absolute;
+    bottom: 2%; left: 50%; margin-left: -18px;}
+
+.next-button, .last-button, .next-animation,.last-animation{ position: absolute;
+    bottom: 2%;width: 100%; height: 50px;}
+
+
+.next-animation{
+    -webkit-animation:rotate .7s linear infinite;
+}
+@-webkit-keyframes rotate
+{
+    0% {-webkit-transform:translate3d(0, 6px, 0);}
+    100% {-webkit-transform:translate3d(0, 10px, 0);}
+}
+.last-animation{
+    -webkit-animation:rotate2 .7s linear infinite;
+}
+@-webkit-keyframes rotate2
+{
+    0% {-webkit-transform:translate3d(0, -6px, 0);}
+    100% {-webkit-transform:translate3d(0, -10px, 0);}
+}
