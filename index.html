@@ -10,9 +10,21 @@
     <!-- <link type="text/css" rel="stylesheet" href="./css/animation.css" /> -->
     <link type="text/css" rel="stylesheet" href="./css/all.css" />
     <!-- /develop -->
+    <style type="text/css">
+    body{
+          -webkit-touch-callout: none;
+    }
+    </style>
+    <script>
+    alert(6)
+function BlockMove(event) {
+    //Tell Safari not to move the window.
+    event.preventDefault() ;
+}
+</script>
 </head>
 
-<body>
+<body ontouchmove="BlockMove(event);">
     <div class="main-page">
         <div class="panel">
             <div class="single-page">
@@ -24,6 +36,7 @@
                 </div>
             </div>
             <div class="single-page">
+                <!-- <a href="mailto:hi@invesdesign.com?subject=invesdesign"><div class="sprites button_join_us" data-tap="button_join_us_pressed"></div></a> -->
                 <div class="sprites button_join_us" data-tap="button_join_us_pressed"></div>
                 <div class="next-animation">
                     <div class="sprites next_pressed"></div>
@@ -107,6 +120,7 @@
     -->
 
     <script>
+
     (function initTap() {
         $(document.body).on('touchstart', '[data-tap]', function(event) {
             var $el = $(event.currentTarget);
@@ -187,7 +201,8 @@
     }
 
     function showMain() {
-        $('.main-page').animate({"-webkit-transform" : "translate3d(0px, 0px, 0px)"}, 300);
+        // $('.main-page').animate({"-webkit-transform" : "translate3d(0px, 0px, 0px)"}, 300);
+        $('.main-page').css({"-webkit-transform" : "translate3d(0px, 0px, 0px)"});
     }
 
     if( 'onhashchange' in window ) {
@@ -213,13 +228,14 @@
             return state = !state;
         });
     }
-    $(document.body).on('click', '.button_join_us', function() {
+    $('.main-page').on('touchend', '.button_join_us', function() {
+        location.href = 'mailto:hi@invesdesign.com?subject=invesdesign';
         sliderY.go(4);
     });
-    $(document.body).on('click', '.next-button', function() {
+    $('.main-page').on('touchend', '.next-button', function() {
         sliderY.next();
     });
-    $(document.body).on('click', '.last-button', function() {
+    $('.main-page').on('touchend', '.last-button', function() {
         sliderY.prev();
     });
 
